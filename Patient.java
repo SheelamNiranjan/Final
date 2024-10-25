@@ -1,0 +1,25 @@
+package com.example.telemedicine_backend.model;
+
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Entity
+@Table(name = "patients")
+public class Patient {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    private String name;
+    private String email;
+    private String password; // Store hashed password
+
+    @OneToOne(mappedBy = "patient", fetch = FetchType.LAZY)
+    private PatientDetails patientDetails;
+
+}
